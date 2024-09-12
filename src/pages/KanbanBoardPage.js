@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Accordion,
   AccordionSummary,
@@ -19,11 +19,11 @@ import {
   Card,
   CardContent,
   IconButton,
+  Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
@@ -48,23 +48,40 @@ const categories = {
 
 const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-const AccordionSection = ({ mealType }) => {
+const AccordionSection = React.forwardRef(({ mealType, expanded, onExpand, onCollapse, onDeleteAll, globalSearchTerm }, ref) => {
   const [rows, setRows] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+
+  React.useImperativeHandle(ref, () => ({
+    getData: () => rows.map(row => ({
+      'Category': row.category.join(', '),
+      ...row.days.reduce((acc, day, index) => ({ ...acc, [`Day ${daysOfWeek[index]}`]: day.join(', ') }), {}),
+    })),
+    deleteAll: () => {
+      setRows([]);
+      if (onDeleteAll) onDeleteAll();
+    }
+  }));
 
   // Add a new row
   const addRow = () => {
-    setRows([...rows, { category: '', applyToAll: false, days: Array(daysOfWeek.length).fill('') }]);
+    setRows([...rows, { category: [], applyToAll: false, days: Array(daysOfWeek.length).fill([]) }]);
   };
 
   // Handle category change
   const handleCategoryChange = (index, event) => {
     const newRows = [...rows];
-    const selectedCategory = event.target.value;
-    newRows[index].category = selectedCategory;
+    const selectedCategories = event.target.value;
+    newRows[index].category = selectedCategories;
     if (newRows[index].applyToAll) {
-      newRows[index].days = Array(daysOfWeek.length).fill(selectedCategory);
+      newRows[index].days = Array(daysOfWeek.length).fill(selectedCategories.flatMap(cat => categories[mealType][cat]?.options || []));
+    } else {
+        newRows[index].days = newRows[index].days.map(day => {
+            return day.reduce((acc, item) => (
+              selectedCategories.includes(newRows[index].category.find(cat => categories[mealType][cat]?.options.includes(item))) ?
+              acc.concat(categories[mealType]?.options || []) : acc
+            ), []);
+          });
     }
     setRows(newRows);
   };
@@ -81,68 +98,37 @@ const AccordionSection = ({ mealType }) => {
     const newRows = [...rows];
     newRows[index].applyToAll = !newRows[index].applyToAll;
     if (newRows[index].applyToAll) {
-      newRows[index].days = Array(daysOfWeek.length).fill(newRows[index].category || '');
+      newRows[index].days = Array(daysOfWeek.length).fill(newRows[index].category.flatMap(cat => categories[mealType][cat]?.options || []));
     } else {
-      newRows[index].days = Array(daysOfWeek.length).fill('');
+      newRows[index].days = newRows[index].days.map(day => day.some(item => newRows[index].category.includes(categories[mealType].find(cat => categories[mealType][cat]?.options.includes(item)))) ? [] : day);
     }
     setRows(newRows);
   };
 
   // Handle delete row
   const handleDeleteRow = (index) => {
-    const newRows = rows.filter((_, rowIndex) => rowIndex !== index);
-    setRows(newRows);
+    setRows(prevRows => prevRows.filter((_, rowIndex) => rowIndex !== index));
   };
+  
 
-  // Handle delete all rows
-  const handleDeleteAll = () => {
-    setRows([]);
-  };
-
-  // Export to Excel
-  const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(
-      rows.map(row => ({
-        'Category': row.category,
-        ...row.days.reduce((acc, day, index) => ({ ...acc, [`Day ${daysOfWeek[index]}`]: day }), {}),
-      }))
-    );
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, mealType);
-    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), `${mealType}.xlsx`);
-  };
-
-  // Handle search input change
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
-  };
-
-  // Filter rows based on search term
+  // Filter rows based on global search term
   const filteredRows = rows.filter(row => {
-    const categoryMatch = row.category.toLowerCase().includes(searchTerm);
-    const dayMatches = row.days.some(day => day.toLowerCase().includes(searchTerm));
+    const categoryMatch = row.category.join(' ').toLowerCase().includes(globalSearchTerm.toLowerCase());
+    const dayMatches = row.days.some(day => day.join(' ').toLowerCase().includes(globalSearchTerm.toLowerCase()));
     return categoryMatch || dayMatches;
   });
 
+  // Limit dishes per category to 2
+  const getCategoryOptions = (selectedCategories) => {
+    return selectedCategories.flatMap(cat => categories[mealType][cat]?.options || []);
+  };
+
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={() => (expanded ? onCollapse() : onExpand())}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{mealType}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <TextField
-          variant="outlined"
-          placeholder="Search..."
-          onChange={handleSearchChange}
-          style={{ marginBottom: 16, width: '100%' }}
-        />
-        <Button variant="contained" color="secondary" onClick={handleDeleteAll} style={{ marginBottom: 16 }}>
-          Delete All
-        </Button>
-        <Button  sx={{ marginLeft: 2, marginRight: 2 }} variant="contained" color="primary" onClick={exportToExcel} style={{ marginBottom: 16, marginRight: 16 }}>
-          Export to Excel
-        </Button>
         <TableContainer>
           <Table>
             <TableHead>
@@ -151,10 +137,11 @@ const AccordionSection = ({ mealType }) => {
                   <Typography variant="body2">Apply for All Days</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="body2">Category<span> <IconButton color="primary" onClick={addRow} style={{ marginLeft: 8 }}>
-                    <AddIcon />
-                  </IconButton></span></Typography>
-                 
+                  <Typography variant="body2">Category
+                    <IconButton color="primary" onClick={addRow} style={{ marginLeft: 8 }}>
+                      <AddIcon />
+                    </IconButton>
+                  </Typography>
                 </TableCell>
                 {daysOfWeek.map((day) => (
                   <TableCell key={day}>
@@ -167,126 +154,195 @@ const AccordionSection = ({ mealType }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredRows.map((row, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  <TableCell>
-                    <Checkbox
-                      checked={row.applyToAll}
-                      onChange={() => handleApplyAllChange(rowIndex)}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <FormControl fullWidth>
-                      <Select
-                        value={row.category}
-                        onChange={(event) => handleCategoryChange(rowIndex, event)}
-                      >
-                        <MenuItem value="">Select Category</MenuItem>
-                        {Object.keys(categories[mealType]).map((cat) => (
-                          <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    {row.category && (
-                      <Card style={{ backgroundColor: categories[mealType][row.category]?.color || '#FFFFFF', marginTop: 8 }}>
-                        <CardContent>
-                          <Typography variant="body2">Category: {row.category}</Typography>
-                          {editingIndex === rowIndex ? (
-                            <TextField
-                              value={row.category}
-                              onChange={(event) => handleCategoryChange(rowIndex, event)}
-                              fullWidth
-                              variant="outlined"
-                              style={{ marginBottom: 4 }}
-                            />
-                          ) : (
-                            <Typography variant="body2">Food Subsets: {row.category}</Typography>
-                          )}
-                          <div style={{ marginTop: 8 }}>
-                            <IconButton
-                              color="primary"
-                              onClick={() => {
-                                setEditingIndex(editingIndex === rowIndex ? null : rowIndex);
-                              }}
-                            >
-                              <EditIcon />
-                            </IconButton>
-                            <IconButton color="secondary" onClick={() => handleDeleteRow(rowIndex)}>
-                              <DeleteIcon />
-                            </IconButton>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    )}
-                  </TableCell>
-                  {daysOfWeek.map((day, dayIndex) => (
-                    <TableCell key={dayIndex}>
-                      <FormControl fullWidth disabled={row.applyToAll}>
-                        <Select
-                          value={row.days[dayIndex]}
-                          onChange={(event) => handleDayChange(rowIndex, dayIndex, event)}
-                        >
-                          <MenuItem value="">Select Food</MenuItem>
-                          {row.category && categories[mealType][row.category]?.options?.map((option) => (
-                            <MenuItem key={option} value={option}>{option}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      {row.days[dayIndex] && (
-                        <Card style={{ backgroundColor: categories[mealType][row.category]?.color || '#FFFFFF', marginTop: 8 }}>
-                          <CardContent>
-                            <Typography variant="body2">Day: {day}</Typography>
-                            <Typography variant="body2">Food: {row.days[dayIndex]}</Typography>
-                            <div style={{ marginTop: 8 }}>
-                              <IconButton
-                                color="primary"
-                                onClick={() => {
-                                  // Handle Edit logic if needed
-                                }}
-                              >
-                                <EditIcon />
-                              </IconButton>
-                              <IconButton
-                                color="secondary"
-                                onClick={() => {
-                                  // Handle Delete logic
-                                  const newRows = [...rows];
-                                  newRows[rowIndex].days[dayIndex] = '';
-                                  setRows(newRows);
-                                }}
-                              >
-                                <DeleteIcon />
-                              </IconButton>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      )}
-                    </TableCell>
+  {filteredRows.map((row, rowIndex) => (
+    <TableRow key={rowIndex} style={{ minHeight: '80px' }}>
+      <TableCell style={{ verticalAlign: 'top', padding: '8px' }}>
+        <Checkbox
+          checked={row.applyToAll}
+          onChange={() => handleApplyAllChange(rowIndex)}
+        />
+      </TableCell>
+      <TableCell style={{ verticalAlign: 'top', padding: '8px' }}>
+        <FormControl fullWidth>
+          <Select
+            multiple
+            value={row.category}
+            onChange={(event) => handleCategoryChange(rowIndex, event)}
+            renderValue={(selected) => (
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {selected.map((value) => (
+                  <div key={value} style={{ margin: 2, padding: 2, backgroundColor: '#E0E0E0', borderRadius: 4 }}>
+                    {value}
+                  </div>
+                ))}
+              </div>
+            )}
+          >
+            <MenuItem value="">None</MenuItem>
+            {Object.keys(categories[mealType]).map((cat) => (
+              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        {row.category.length > 0 && (
+          <Card style={{ backgroundColor: '#FFFFFF', marginTop: 8, position: 'relative', border: `1px solid ${categories[mealType][row.category[0]]?.color || '#000'}`, borderRadius: 8 }}>
+            <IconButton
+              color="secondary"
+              onClick={() => handleDeleteRow(rowIndex)}
+              style={{ position: 'absolute', top: 4, right: 4 }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <CardContent>
+              <Typography variant="body2" style={{ color: categories[mealType][row.category[0]]?.color || '#000' }}>Categories: {row.category.join(', ')}</Typography>
+              <Typography variant="body2">Food Subsets: {getCategoryOptions(row.category).join(', ')}</Typography>
+            </CardContent>
+          </Card>
+        )}
+      </TableCell>
+      {daysOfWeek.map((day, dayIndex) => (
+        <TableCell key={dayIndex} style={{ verticalAlign: 'top', padding: '8px', position: 'relative' }}>
+          <FormControl fullWidth disabled={row.applyToAll}>
+            <Select
+              multiple
+              value={row.days[dayIndex]}
+              onChange={(event) => handleDayChange(rowIndex, dayIndex, event)}
+              renderValue={(selected) => (
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                  {selected.map((value) => (
+                    <div key={value} style={{ margin: 2, padding: 2, backgroundColor: '#E0E0E0', borderRadius: 4 }}>
+                      {value}
+                    </div>
                   ))}
-                  <TableCell>
-                    <IconButton color="secondary" onClick={() => handleDeleteRow(rowIndex)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+                </div>
+              )}
+            >
+              <MenuItem value="">None</MenuItem>
+              {getCategoryOptions(row.category).map((option) => (
+                <MenuItem key={option} value={option}>{option}</MenuItem>
               ))}
-            </TableBody>
+            </Select>
+          </FormControl>
+          {row.days[dayIndex].length > 0 && (
+            <Card style={{ backgroundColor: '#FFFFFF', marginTop: 8, position: 'relative', border: `1px solid ${categories[mealType][row.category[0]]?.color || '#000'}`, borderRadius: 8 }}>
+              <IconButton
+                color="secondary"
+                onClick={() => {
+                  const newRows = [...rows];
+                  newRows[rowIndex].days[dayIndex] = [];
+                  setRows(newRows);
+                }}
+                style={{ position: 'absolute', top: 4, right: 4 }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <CardContent>
+                <Typography variant="body2" style={{ color: categories[mealType][row.category[0]]?.color || '#000' }}>Day: {day}</Typography>
+                <Typography variant="body2">Food: {row.days[dayIndex].join(', ')}</Typography>
+              </CardContent>
+            </Card>
+          )}
+        </TableCell>
+      ))}
+      <TableCell style={{ verticalAlign: 'top', padding: '8px' }}>
+        <IconButton color="secondary" onClick={() => handleDeleteRow(rowIndex)}>
+          <CloseIcon />
+        </IconButton>
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
+
           </Table>
         </TableContainer>
       </AccordionDetails>
     </Accordion>
   );
-};
+});
 
 const App = () => {
+  const lunchRef = useRef(null);
+  const dinnerRef = useRef(null);
+  const snackRef = useRef(null);
+
+  const [expanded, setExpanded] = useState({ Lunch: false, Dinner: false, Snack: false });
+  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+
+  const handleExpandAll = () => {
+    setExpanded({ Lunch: true, Dinner: true, Snack: true });
+  };
+
+  const handleCollapseAll = () => {
+    setExpanded({ Lunch: false, Dinner: false, Snack: false });
+  };
+
+  const handleDeleteAllMenus = () => {
+    if (lunchRef.current) lunchRef.current.deleteAll();
+    if (dinnerRef.current) dinnerRef.current.deleteAll();
+    if (snackRef.current) snackRef.current.deleteAll();
+  };
+
+  const handleExportAllToExcel = () => {
+    const sheets = [
+      { name: 'Lunch', data: lunchRef.current.getData() },
+      { name: 'Dinner', data: dinnerRef.current.getData() },
+      { name: 'Snack', data: snackRef.current.getData() }
+    ];
+
+    const workbook = XLSX.utils.book_new();
+
+    sheets.forEach(sheet => {
+      const ws = XLSX.utils.json_to_sheet(sheet.data, { header: ['Category', ...daysOfWeek.map(day => `Day ${day}`)] });
+      XLSX.utils.book_append_sheet(workbook, ws, sheet.name);
+    });
+
+    const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'menu.xlsx');
+  };
+
+  const handleSaveDraft = () => {
+    // Implement save draft functionality
+    console.log('Save as Draft');
+  };
+
+  const handlePublish = () => {
+    // Implement publish functionality
+    console.log('Publish');
+  };
+
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={() => { /* Implement global export functionality here if needed */ }} style={{ marginBottom: 16 }}>
-        Export All to Excel
-      </Button>
-      <AccordionSection mealType="Lunch" />
-      <AccordionSection mealType="Dinner" />
-      <AccordionSection mealType="Snack" />
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <TextField
+          variant="outlined"
+          placeholder="Search..."
+          onChange={(event) => setGlobalSearchTerm(event.target.value)}
+          style={{ width: '300px' }}
+        />
+        <Box>
+          <Button variant="contained" color="primary" onClick={handleExpandAll} style={{ marginLeft: 8 }}>
+            Expand All
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleCollapseAll} style={{ marginLeft: 8 }}>
+            Collapse All
+          </Button>
+          <Button variant="contained" color="secondary" onClick={handleDeleteAllMenus} style={{ marginLeft: 8 }}>
+            Delete All Menus
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleExportAllToExcel} style={{ marginLeft: 8 }}>
+            Export All to Excel
+          </Button>
+          <Button variant="contained" color="info" onClick={handleSaveDraft} style={{ marginLeft: 8 }}>
+            Save as Draft
+          </Button>
+          <Button variant="contained" color="success" onClick={handlePublish} style={{ marginLeft: 8 }}>
+            Publish
+          </Button>
+        </Box>
+      </Box>
+      <AccordionSection ref={lunchRef} mealType="Lunch" expanded={expanded.Lunch} onExpand={() => setExpanded({ ...expanded, Lunch: true })} onCollapse={() => setExpanded({ ...expanded, Lunch: false })} onDeleteAll={() => handleDeleteAllMenus()} globalSearchTerm={globalSearchTerm} />
+      <AccordionSection ref={dinnerRef} mealType="Dinner" expanded={expanded.Dinner} onExpand={() => setExpanded({ ...expanded, Dinner: true })} onCollapse={() => setExpanded({ ...expanded, Dinner: false })} onDeleteAll={() => handleDeleteAllMenus()} globalSearchTerm={globalSearchTerm} />
+      <AccordionSection ref={snackRef} mealType="Snack" expanded={expanded.Snack} onExpand={() => setExpanded({ ...expanded, Snack: true })} onCollapse={() => setExpanded({ ...expanded, Snack: false })} onDeleteAll={() => handleDeleteAllMenus()} globalSearchTerm={globalSearchTerm} />
     </div>
   );
 };
