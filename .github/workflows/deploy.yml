@@ -1,0 +1,46 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger the workflow on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' 
+
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Run tests
+        run: npm test -- --coverage
+        continue-on-error: true  
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Calintron"
+          git config --global user.email "Harsh.jain1@kellton.com"
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'  # Only deploy on main branch
+        run: |
+          # Add your deployment commands here
+          # Example: Deploy to GitHub Pages
+          npx gh-pages -d build -r https://${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
