@@ -19,17 +19,22 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Specify the Node.js version
+          node-version: '16' 
 
       - name: Install dependencies
         run: npm install --force
 
       - name: Run tests
         run: npm test -- --coverage
-        continue-on-error: true  # Optional: allows the workflow to continue even if tests fail
+        continue-on-error: true  
 
       - name: Build
         run: npm run build
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Calintron"
+          git config --global user.email "Harsh.jain1@kellton.com"
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'  # Only deploy on main branch
