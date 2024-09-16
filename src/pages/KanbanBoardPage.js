@@ -26,6 +26,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import './dashboard.css';
 
 // Sample categories and their associated colors and subcategories
 const categories = {
@@ -132,7 +133,7 @@ const AccordionSection = React.forwardRef(({ mealType, expanded, onExpand, onCol
         <TableContainer>
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow className='main-row'>
                 <TableCell>
                   <Typography variant="body2">Apply for All Days</Typography>
                 </TableCell>
@@ -155,7 +156,7 @@ const AccordionSection = React.forwardRef(({ mealType, expanded, onExpand, onCol
             </TableHead>
             <TableBody>
   {filteredRows.map((row, rowIndex) => (
-    <TableRow key={rowIndex} style={{ minHeight: '80px' }}>
+    <TableRow className='row-content-td' key={rowIndex}>
       <TableCell style={{ verticalAlign: 'top', padding: '8px' }}>
         <Checkbox
           checked={row.applyToAll}
@@ -164,7 +165,7 @@ const AccordionSection = React.forwardRef(({ mealType, expanded, onExpand, onCol
       </TableCell>
       <TableCell style={{ verticalAlign: 'top', padding: '8px' }}>
         <FormControl fullWidth>
-          <Select
+          <Select className='select-box'
             multiple
             value={row.category}
             onChange={(event) => handleCategoryChange(rowIndex, event)}
@@ -203,7 +204,7 @@ const AccordionSection = React.forwardRef(({ mealType, expanded, onExpand, onCol
       {daysOfWeek.map((day, dayIndex) => (
         <TableCell key={dayIndex} style={{ verticalAlign: 'top', padding: '8px', position: 'relative' }}>
           <FormControl fullWidth disabled={row.applyToAll}>
-            <Select
+            <Select className='select-box'
               multiple
               value={row.days[dayIndex]}
               onChange={(event) => handleDayChange(rowIndex, dayIndex, event)}
@@ -319,7 +320,7 @@ const App = () => {
           onChange={(event) => setGlobalSearchTerm(event.target.value)}
           style={{ width: '300px' }}
         />
-        <Box>
+        <Box className="button-section-header">
           <Button variant="contained" color="primary" onClick={handleExpandAll} style={{ marginLeft: 8 }}>
             Expand All
           </Button>

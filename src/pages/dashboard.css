@@ -1,0 +1,34 @@
+
+.main-row th {
+  width: 11.25%;
+}
+
+.main-row th:first-child {
+  width: 7%;
+}
+
+.main-row th:last-child {
+  width: 3%;
+}
+
+
+
+.row-content-td td {
+  width: 11.25%;
+}
+
+.row-content-td td:first-child {
+  width: 7%;
+}
+
+.row-content-td td:last-child {
+  width: 3%;
+}
+
+.select-box {
+  height: 60px;
+  overflow: hidden;
+}
+
+
+
