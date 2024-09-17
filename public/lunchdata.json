@@ -1,0 +1,836 @@
+[
+    {
+      "category": ["Salad"],
+      "applyToAll": false,
+      "days": [
+        ["Caesar", "Greek"],
+        ["Cobb"],
+        ["Caesar"],
+        ["Greek"],
+        ["Cobb"],
+        ["Caesar"],
+        ["Greek"]
+      ]
+    },
+    {
+      "category": ["Sandwich"],
+      "applyToAll": false,
+      "days": [
+        ["Turkey", "Ham"],
+        ["Veggie"],
+        ["Turkey"],
+        ["Ham"],
+        ["Veggie"],
+        ["Turkey"],
+        ["Ham"]
+      ]
+    },
+    {
+        "category": ["Salad"],
+        "applyToAll": false,
+        "days": [
+          ["Caesar", "Greek"],
+          ["Cobb"],
+          ["Caesar"],
+          ["Greek"],
+          ["Cobb"],
+          ["Caesar"],
+          ["Greek"]
+        ]
+      },
+      {
+        "category": ["Sandwich"],
+        "applyToAll": false,
+        "days": [
+          ["Turkey", "Ham"],
+          ["Veggie"],
+          ["Turkey"],
+          ["Ham"],
+          ["Veggie"],
+          ["Turkey"],
+          ["Ham"]
+        ]
+      },
+      {
+        "category": ["Salad"],
+        "applyToAll": false,
+        "days": [
+          ["Caesar", "Greek"],
+          ["Cobb"],
+          ["Caesar"],
+          ["Greek"],
+          ["Cobb"],
+          ["Caesar"],
+          ["Greek"]
+        ]
+      },
+      {
+        "category": ["Sandwich"],
+        "applyToAll": false,
+        "days": [
+          ["Turkey", "Ham"],
+          ["Veggie"],
+          ["Turkey"],
+          ["Ham"],
+          ["Veggie"],
+          ["Turkey"],
+          ["Ham"]
+        ]
+      },
+      {
+          "category": ["Salad"],
+          "applyToAll": false,
+          "days": [
+            ["Caesar", "Greek"],
+            ["Cobb"],
+            ["Caesar"],
+            ["Greek"],
+            ["Cobb"],
+            ["Caesar"],
+            ["Greek"]
+          ]
+        },
+        {
+          "category": ["Sandwich"],
+          "applyToAll": false,
+          "days": [
+            ["Turkey", "Ham"],
+            ["Veggie"],
+            ["Turkey"],
+            ["Ham"],
+            ["Veggie"],
+            ["Turkey"],
+            ["Ham"]
+          ]
+        },
+        {
+            "category": ["Salad"],
+            "applyToAll": false,
+            "days": [
+              ["Caesar", "Greek"],
+              ["Cobb"],
+              ["Caesar"],
+              ["Greek"],
+              ["Cobb"],
+              ["Caesar"],
+              ["Greek"]
+            ]
+          },
+          {
+            "category": ["Sandwich"],
+            "applyToAll": false,
+            "days": [
+              ["Turkey", "Ham"],
+              ["Veggie"],
+              ["Turkey"],
+              ["Ham"],
+              ["Veggie"],
+              ["Turkey"],
+              ["Ham"]
+            ]
+          },
+          {
+              "category": ["Salad"],
+              "applyToAll": false,
+              "days": [
+                ["Caesar", "Greek"],
+                ["Cobb"],
+                ["Caesar"],
+                ["Greek"],
+                ["Cobb"],
+                ["Caesar"],
+                ["Greek"]
+              ]
+            },
+            {
+              "category": ["Sandwich"],
+              "applyToAll": false,
+              "days": [
+                ["Turkey", "Ham"],
+                ["Veggie"],
+                ["Turkey"],
+                ["Ham"],
+                ["Veggie"],
+                ["Turkey"],
+                ["Ham"]
+              ]
+            },
+            {
+              "category": ["Salad"],
+              "applyToAll": false,
+              "days": [
+                ["Caesar", "Greek"],
+                ["Cobb"],
+                ["Caesar"],
+                ["Greek"],
+                ["Cobb"],
+                ["Caesar"],
+                ["Greek"]
+              ]
+            },
+            {
+              "category": ["Sandwich"],
+              "applyToAll": false,
+              "days": [
+                ["Turkey", "Ham"],
+                ["Veggie"],
+                ["Turkey"],
+                ["Ham"],
+                ["Veggie"],
+                ["Turkey"],
+                ["Ham"]
+              ]
+            },
+            {
+                "category": ["Salad"],
+                "applyToAll": false,
+                "days": [
+                  ["Caesar", "Greek"],
+                  ["Cobb"],
+                  ["Caesar"],
+                  ["Greek"],
+                  ["Cobb"],
+                  ["Caesar"],
+                  ["Greek"]
+                ]
+              },
+              {
+                "category": ["Sandwich"],
+                "applyToAll": false,
+                "days": [
+                  ["Turkey", "Ham"],
+                  ["Veggie"],
+                  ["Turkey"],
+                  ["Ham"],
+                  ["Veggie"],
+                  ["Turkey"],
+                  ["Ham"]
+                ]
+              },
+              {
+                "category": ["Salad"],
+                "applyToAll": false,
+                "days": [
+                  ["Caesar", "Greek"],
+                  ["Cobb"],
+                  ["Caesar"],
+                  ["Greek"],
+                  ["Cobb"],
+                  ["Caesar"],
+                  ["Greek"]
+                ]
+              },
+              {
+                "category": ["Sandwich"],
+                "applyToAll": false,
+                "days": [
+                  ["Turkey", "Ham"],
+                  ["Veggie"],
+                  ["Turkey"],
+                  ["Ham"],
+                  ["Veggie"],
+                  ["Turkey"],
+                  ["Ham"]
+                ]
+              },
+              {
+                  "category": ["Salad"],
+                  "applyToAll": false,
+                  "days": [
+                    ["Caesar", "Greek"],
+                    ["Cobb"],
+                    ["Caesar"],
+                    ["Greek"],
+                    ["Cobb"],
+                    ["Caesar"],
+                    ["Greek"]
+                  ]
+                },
+                {
+                  "category": ["Sandwich"],
+                  "applyToAll": false,
+                  "days": [
+                    ["Turkey", "Ham"],
+                    ["Veggie"],
+                    ["Turkey"],
+                    ["Ham"],
+                    ["Veggie"],
+                    ["Turkey"],
+                    ["Ham"]
+                  ]
+                },
+                {
+                  "category": ["Salad"],
+                  "applyToAll": false,
+                  "days": [
+                    ["Caesar", "Greek"],
+                    ["Cobb"],
+                    ["Caesar"],
+                    ["Greek"],
+                    ["Cobb"],
+                    ["Caesar"],
+                    ["Greek"]
+                  ]
+                },
+                {
+                  "category": ["Sandwich"],
+                  "applyToAll": false,
+                  "days": [
+                    ["Turkey", "Ham"],
+                    ["Veggie"],
+                    ["Turkey"],
+                    ["Ham"],
+                    ["Veggie"],
+                    ["Turkey"],
+                    ["Ham"]
+                  ]
+                },
+                {
+                    "category": ["Salad"],
+                    "applyToAll": false,
+                    "days": [
+                      ["Caesar", "Greek"],
+                      ["Cobb"],
+                      ["Caesar"],
+                      ["Greek"],
+                      ["Cobb"],
+                      ["Caesar"],
+                      ["Greek"]
+                    ]
+                  },
+                  {
+                    "category": ["Sandwich"],
+                    "applyToAll": false,
+                    "days": [
+                      ["Turkey", "Ham"],
+                      ["Veggie"],
+                      ["Turkey"],
+                      ["Ham"],
+                      ["Veggie"],
+                      ["Turkey"],
+                      ["Ham"]
+                    ]
+                  },
+                  {
+                    "category": ["Salad"],
+                    "applyToAll": false,
+                    "days": [
+                      ["Caesar", "Greek"],
+                      ["Cobb"],
+                      ["Caesar"],
+                      ["Greek"],
+                      ["Cobb"],
+                      ["Caesar"],
+                      ["Greek"]
+                    ]
+                  },
+                  {
+                    "category": ["Sandwich"],
+                    "applyToAll": false,
+                    "days": [
+                      ["Turkey", "Ham"],
+                      ["Veggie"],
+                      ["Turkey"],
+                      ["Ham"],
+                      ["Veggie"],
+                      ["Turkey"],
+                      ["Ham"]
+                    ]
+                  },
+                  {
+                      "category": ["Salad"],
+                      "applyToAll": false,
+                      "days": [
+                        ["Caesar", "Greek"],
+                        ["Cobb"],
+                        ["Caesar"],
+                        ["Greek"],
+                        ["Cobb"],
+                        ["Caesar"],
+                        ["Greek"]
+                      ]
+                    },
+                    {
+                      "category": ["Sandwich"],
+                      "applyToAll": false,
+                      "days": [
+                        ["Turkey", "Ham"],
+                        ["Veggie"],
+                        ["Turkey"],
+                        ["Ham"],
+                        ["Veggie"],
+                        ["Turkey"],
+                        ["Ham"]
+                      ]
+                    },
+                    {
+                      "category": ["Salad"],
+                      "applyToAll": false,
+                      "days": [
+                        ["Caesar", "Greek"],
+                        ["Cobb"],
+                        ["Caesar"],
+                        ["Greek"],
+                        ["Cobb"],
+                        ["Caesar"],
+                        ["Greek"]
+                      ]
+                    },
+                    {
+                      "category": ["Sandwich"],
+                      "applyToAll": false,
+                      "days": [
+                        ["Turkey", "Ham"],
+                        ["Veggie"],
+                        ["Turkey"],
+                        ["Ham"],
+                        ["Veggie"],
+                        ["Turkey"],
+                        ["Ham"]
+                      ]
+                    },
+                    {
+                        "category": ["Salad"],
+                        "applyToAll": false,
+                        "days": [
+                          ["Caesar", "Greek"],
+                          ["Cobb"],
+                          ["Caesar"],
+                          ["Greek"],
+                          ["Cobb"],
+                          ["Caesar"],
+                          ["Greek"]
+                        ]
+                      },
+                      {
+                        "category": ["Sandwich"],
+                        "applyToAll": false,
+                        "days": [
+                          ["Turkey", "Ham"],
+                          ["Veggie"],
+                          ["Turkey"],
+                          ["Ham"],
+                          ["Veggie"],
+                          ["Turkey"],
+                          ["Ham"]
+                        ]
+                      },
+                      {
+                        "category": ["Salad"],
+                        "applyToAll": false,
+                        "days": [
+                          ["Caesar", "Greek"],
+                          ["Cobb"],
+                          ["Caesar"],
+                          ["Greek"],
+                          ["Cobb"],
+                          ["Caesar"],
+                          ["Greek"]
+                        ]
+                      },
+                      {
+                        "category": ["Sandwich"],
+                        "applyToAll": false,
+                        "days": [
+                          ["Turkey", "Ham"],
+                          ["Veggie"],
+                          ["Turkey"],
+                          ["Ham"],
+                          ["Veggie"],
+                          ["Turkey"],
+                          ["Ham"]
+                        ]
+                      },
+                      {
+                          "category": ["Salad"],
+                          "applyToAll": false,
+                          "days": [
+                            ["Caesar", "Greek"],
+                            ["Cobb"],
+                            ["Caesar"],
+                            ["Greek"],
+                            ["Cobb"],
+                            ["Caesar"],
+                            ["Greek"]
+                          ]
+                        },
+                        {
+                          "category": ["Sandwich"],
+                          "applyToAll": false,
+                          "days": [
+                            ["Turkey", "Ham"],
+                            ["Veggie"],
+                            ["Turkey"],
+                            ["Ham"],
+                            ["Veggie"],
+                            ["Turkey"],
+                            ["Ham"]
+                          ]
+                        },
+                        {
+                          "category": ["Salad"],
+                          "applyToAll": false,
+                          "days": [
+                            ["Caesar", "Greek"],
+                            ["Cobb"],
+                            ["Caesar"],
+                            ["Greek"],
+                            ["Cobb"],
+                            ["Caesar"],
+                            ["Greek"]
+                          ]
+                        },
+                        {
+                          "category": ["Sandwich"],
+                          "applyToAll": false,
+                          "days": [
+                            ["Turkey", "Ham"],
+                            ["Veggie"],
+                            ["Turkey"],
+                            ["Ham"],
+                            ["Veggie"],
+                            ["Turkey"],
+                            ["Ham"]
+                          ]
+                        },
+                        {
+                            "category": ["Salad"],
+                            "applyToAll": false,
+                            "days": [
+                              ["Caesar", "Greek"],
+                              ["Cobb"],
+                              ["Caesar"],
+                              ["Greek"],
+                              ["Cobb"],
+                              ["Caesar"],
+                              ["Greek"]
+                            ]
+                          },
+                          {
+                            "category": ["Sandwich"],
+                            "applyToAll": false,
+                            "days": [
+                              ["Turkey", "Ham"],
+                              ["Veggie"],
+                              ["Turkey"],
+                              ["Ham"],
+                              ["Veggie"],
+                              ["Turkey"],
+                              ["Ham"]
+                            ]
+                          },
+                          {
+                              "category": ["Salad"],
+                              "applyToAll": false,
+                              "days": [
+                                ["Caesar", "Greek"],
+                                ["Cobb"],
+                                ["Caesar"],
+                                ["Greek"],
+                                ["Cobb"],
+                                ["Caesar"],
+                                ["Greek"]
+                              ]
+                            },
+                            {
+                              "category": ["Sandwich"],
+                              "applyToAll": false,
+                              "days": [
+                                ["Turkey", "Ham"],
+                                ["Veggie"],
+                                ["Turkey"],
+                                ["Ham"],
+                                ["Veggie"],
+                                ["Turkey"],
+                                ["Ham"]
+                              ]
+                            },
+                            {
+                                "category": ["Salad"],
+                                "applyToAll": false,
+                                "days": [
+                                  ["Caesar", "Greek"],
+                                  ["Cobb"],
+                                  ["Caesar"],
+                                  ["Greek"],
+                                  ["Cobb"],
+                                  ["Caesar"],
+                                  ["Greek"]
+                                ]
+                              },
+                              {
+                                "category": ["Sandwich"],
+                                "applyToAll": false,
+                                "days": [
+                                  ["Turkey", "Ham"],
+                                  ["Veggie"],
+                                  ["Turkey"],
+                                  ["Ham"],
+                                  ["Veggie"],
+                                  ["Turkey"],
+                                  ["Ham"]
+                                ]
+                              },
+                              {
+                                "category": ["Salad"],
+                                "applyToAll": false,
+                                "days": [
+                                  ["Caesar", "Greek"],
+                                  ["Cobb"],
+                                  ["Caesar"],
+                                  ["Greek"],
+                                  ["Cobb"],
+                                  ["Caesar"],
+                                  ["Greek"]
+                                ]
+                              },
+                              {
+                                "category": ["Sandwich"],
+                                "applyToAll": false,
+                                "days": [
+                                  ["Turkey", "Ham"],
+                                  ["Veggie"],
+                                  ["Turkey"],
+                                  ["Ham"],
+                                  ["Veggie"],
+                                  ["Turkey"],
+                                  ["Ham"]
+                                ]
+                              },
+                              {
+                                  "category": ["Salad"],
+                                  "applyToAll": false,
+                                  "days": [
+                                    ["Caesar", "Greek"],
+                                    ["Cobb"],
+                                    ["Caesar"],
+                                    ["Greek"],
+                                    ["Cobb"],
+                                    ["Caesar"],
+                                    ["Greek"]
+                                  ]
+                                },
+                                {
+                                  "category": ["Sandwich"],
+                                  "applyToAll": false,
+                                  "days": [
+                                    ["Turkey", "Ham"],
+                                    ["Veggie"],
+                                    ["Turkey"],
+                                    ["Ham"],
+                                    ["Veggie"],
+                                    ["Turkey"],
+                                    ["Ham"]
+                                  ]
+                                },
+                                {
+                                  "category": ["Salad"],
+                                  "applyToAll": false,
+                                  "days": [
+                                    ["Caesar", "Greek"],
+                                    ["Cobb"],
+                                    ["Caesar"],
+                                    ["Greek"],
+                                    ["Cobb"],
+                                    ["Caesar"],
+                                    ["Greek"]
+                                  ]
+                                },
+                                {
+                                  "category": ["Sandwich"],
+                                  "applyToAll": false,
+                                  "days": [
+                                    ["Turkey", "Ham"],
+                                    ["Veggie"],
+                                    ["Turkey"],
+                                    ["Ham"],
+                                    ["Veggie"],
+                                    ["Turkey"],
+                                    ["Ham"]
+                                  ]
+                                },
+                                {
+                                    "category": ["Salad"],
+                                    "applyToAll": false,
+                                    "days": [
+                                      ["Caesar", "Greek"],
+                                      ["Cobb"],
+                                      ["Caesar"],
+                                      ["Greek"],
+                                      ["Cobb"],
+                                      ["Caesar"],
+                                      ["Greek"]
+                                    ]
+                                  },
+                                  {
+                                    "category": ["Sandwich"],
+                                    "applyToAll": false,
+                                    "days": [
+                                      ["Turkey", "Ham"],
+                                      ["Veggie"],
+                                      ["Turkey"],
+                                      ["Ham"],
+                                      ["Veggie"],
+                                      ["Turkey"],
+                                      ["Ham"]
+                                    ]
+                                  },
+                                  {
+                                    "category": ["Salad"],
+                                    "applyToAll": false,
+                                    "days": [
+                                      ["Caesar", "Greek"],
+                                      ["Cobb"],
+                                      ["Caesar"],
+                                      ["Greek"],
+                                      ["Cobb"],
+                                      ["Caesar"],
+                                      ["Greek"]
+                                    ]
+                                  },
+                                  {
+                                    "category": ["Sandwich"],
+                                    "applyToAll": false,
+                                    "days": [
+                                      ["Turkey", "Ham"],
+                                      ["Veggie"],
+                                      ["Turkey"],
+                                      ["Ham"],
+                                      ["Veggie"],
+                                      ["Turkey"],
+                                      ["Ham"]
+                                    ]
+                                  },
+                                  {
+                                      "category": ["Salad"],
+                                      "applyToAll": false,
+                                      "days": [
+                                        ["Caesar", "Greek"],
+                                        ["Cobb"],
+                                        ["Caesar"],
+                                        ["Greek"],
+                                        ["Cobb"],
+                                        ["Caesar"],
+                                        ["Greek"]
+                                      ]
+                                    },
+                                    {
+                                      "category": ["Sandwich"],
+                                      "applyToAll": false,
+                                      "days": [
+                                        ["Turkey", "Ham"],
+                                        ["Veggie"],
+                                        ["Turkey"],
+                                        ["Ham"],
+                                        ["Veggie"],
+                                        ["Turkey"],
+                                        ["Ham"]
+                                      ]
+                                    },
+                                    {
+                                      "category": ["Salad"],
+                                      "applyToAll": false,
+                                      "days": [
+                                        ["Caesar", "Greek"],
+                                        ["Cobb"],
+                                        ["Caesar"],
+                                        ["Greek"],
+                                        ["Cobb"],
+                                        ["Caesar"],
+                                        ["Greek"]
+                                      ]
+                                    },
+                                    {
+                                      "category": ["Sandwich"],
+                                      "applyToAll": false,
+                                      "days": [
+                                        ["Turkey", "Ham"],
+                                        ["Veggie"],
+                                        ["Turkey"],
+                                        ["Ham"],
+                                        ["Veggie"],
+                                        ["Turkey"],
+                                        ["Ham"]
+                                      ]
+                                    },
+                                    {
+                                        "category": ["Salad"],
+                                        "applyToAll": false,
+                                        "days": [
+                                          ["Caesar", "Greek"],
+                                          ["Cobb"],
+                                          ["Caesar"],
+                                          ["Greek"],
+                                          ["Cobb"],
+                                          ["Caesar"],
+                                          ["Greek"]
+                                        ]
+                                      },
+                                      {
+                                        "category": ["Sandwich"],
+                                        "applyToAll": false,
+                                        "days": [
+                                          ["Turkey", "Ham"],
+                                          ["Veggie"],
+                                          ["Turkey"],
+                                          ["Ham"],
+                                          ["Veggie"],
+                                          ["Turkey"],
+                                          ["Ham"]
+                                        ]
+                                      },
+                                      {
+                                        "category": ["Salad"],
+                                        "applyToAll": false,
+                                        "days": [
+                                          ["Caesar", "Greek"],
+                                          ["Cobb"],
+                                          ["Caesar"],
+                                          ["Greek"],
+                                          ["Cobb"],
+                                          ["Caesar"],
+                                          ["Greek"]
+                                        ]
+                                      },
+                                      {
+                                        "category": ["Sandwich"],
+                                        "applyToAll": false,
+                                        "days": [
+                                          ["Turkey", "Ham"],
+                                          ["Veggie"],
+                                          ["Turkey"],
+                                          ["Ham"],
+                                          ["Veggie"],
+                                          ["Turkey"],
+                                          ["Ham"]
+                                        ]
+                                      },
+                                      {
+                                          "category": ["Salad"],
+                                          "applyToAll": false,
+                                          "days": [
+                                            ["Caesar", "Greek"],
+                                            ["Cobb"],
+                                            ["Caesar"],
+                                            ["Greek"],
+                                            ["Cobb"],
+                                            ["Caesar"],
+                                            ["Greek"]
+                                          ]
+                                        },
+                                        {
+                                          "category": ["Sandwich"],
+                                          "applyToAll": false,
+                                          "days": [
+                                            ["Turkey", "Ham"],
+                                            ["Veggie"],
+                                            ["Turkey"],
+                                            ["Ham"],
+                                            ["Veggie"],
+                                            ["Turkey"],
+                                            ["Ham"]
+                                          ]
+                                        }
+                    
+  ]
+  
